@@ -3,11 +3,16 @@ import { startOfHour, parseISO } from 'date-fns';
 
 import AppointmentsRepository from '../repositories/AppointmentRepository';
 
-const appoitmentRouter = Router();
-
+const appoitmentsRouter = Router();
 const appointmentsRepository = new AppointmentsRepository();
 
-appoitmentRouter.post('/', (request, response) => {
+appoitmentsRouter.get('/', (request, response) => {
+  const appointments = appointmentsRepository.all();
+
+  return response.json(appointments);
+});
+
+appoitmentsRouter.post('/', (request, response) => {
   const { provider, date } = request.body;
 
   const parsedDate = startOfHour(parseISO(date));
@@ -27,4 +32,4 @@ appoitmentRouter.post('/', (request, response) => {
   return response.json(appointment);
 });
 
-export default appoitmentRouter;
+export default appoitmentsRouter;
