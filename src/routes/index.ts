@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import appoitmentRouter from './appointments.routes';
 
 const routes = Router();
 
-routes.get('/', (request, response) =>
-  response.json({ message: 'Hello Omnistack' }),
-);
+routes.use('/appointments', appoitmentRouter);
 
 export default routes;
