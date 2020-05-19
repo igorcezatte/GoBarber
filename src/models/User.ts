@@ -14,7 +14,7 @@ class Users {
   @Column()
   name: string;
 
-  @Column('timestamp with time zone')
+  @Column()
   email: string;
 
   @Column()
