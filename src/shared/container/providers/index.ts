@@ -1,5 +1,8 @@
 import { container } from 'tsyringe';
 
+import ICacheProvider from './CacheProvider/models/ICacheProvider';
+import RedisCacheProvider from './CacheProvider/implementations/RedisCacheProvider';
+
 import IStorageProvider from './StorageProvider/models/IStorageProvider';
 import DiskStorageProvider from './StorageProvider/implementations/DiskStorageProvider';
 
@@ -22,4 +25,9 @@ container.registerSingleton<IMailTemplateProvider>(
 container.registerInstance<IMailProvider>(
   'MailProvider',
   container.resolve(EtherealMailProvider),
+);
+
+container.registerSingleton<ICacheProvider>(
+  'CacheProvider',
+  RedisCacheProvider,
 );
